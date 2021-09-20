@@ -1,12 +1,10 @@
-const express = require('express');
-require('dotenv').config();
-const app = express();
-const port = process.env.PORT;
+const http = require('http');
+const app = require('./app');
+const config = require('./utils/config');
+const logger = require('./utils/logger');
 
-app.get('/', function (req, res) {
-  res.send('Restaurant Review Application Server');
-});
+const server = http.createServer(app);
 
-app.listen(port, function (req, res) {
-  console.log(`Server running on port ${port}`);
+server.listen(config.PORT, () => {
+  logger.info(`Server running on port ${config.PORT}`);
 });

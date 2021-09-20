@@ -22,9 +22,9 @@ const ownerSchema = new mongoose.Schema({
   ],
 });
 
-userSchema.plugin(uniqueValidator);
+ownerSchema.plugin(uniqueValidator);
 
-userSchema.set('toJSON', {
+ownerSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
