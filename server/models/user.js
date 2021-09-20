@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   restaurants: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Restaurant',
+      ref: 'Restaurants',
     },
   ],
 });

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const logger = require('logger');
+const logger = require('./logger');
 const User = require('../models/user');
 const Owner = require('../models/owner');
 
@@ -12,7 +12,7 @@ const requestLogger = (request, response, next) => {
 };
 
 const tokenExtractor = (request, response, next) => {
-  const getToken = () => {
+  const getTokenFrom = () => {
     const authorization = request.get('authorization');
     if (authorization && authorization.toLowercase().startsWith('bearer')) {
       return authorization.substring(7);

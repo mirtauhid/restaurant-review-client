@@ -9,7 +9,7 @@ const userLoginRouter = require('./controllers/userLogin');
 const ownerLoginRouter = require('./controllers/ownerLogin');
 
 const ownersRouter = require('./controllers/owner');
-const usersRouter = require('./controllers/users');
+const usersRouter = require('./controllers/user');
 const middleware = require('./utils/middleware');
 const logger = require('./utils/logger');
 

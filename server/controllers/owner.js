@@ -1,22 +1,22 @@
 const bcrypt = require('bcrypt');
-const usersRouter = require('express').Router();
-const User = require('../models/user');
+const OwnersRouter = require('express').Router();
+const Owner = require('../models/owner');
 
-usersRouter.post('/', async (request, response, next) => {
+OwnersRouter.post('/', async (request, response, next) => {
   const { body } = request;
   const saltRounds = 10;
   if (body.password.length >= 8) {
-    const passwordHash = await bcrypt.Hash(body.password, saltRounds);
-    const user = new User({
+    const passwordHash = await bcrypt.hash(body.password, saltRounds);
+    const owner = new Owner({
       name: body.name,
       email: body.email,
       passwordHash,
       restaurants: [],
     });
     try {
-      const savedUser = await user.save();
-      if (savedUser) {
-        response.json(savedUser);
+      const savedOwner = await owner.save();
+      if (savedOwner) {
+        response.json(savedOwner);
       } else {
         response.send(404).end();
       }
@@ -28,23 +28,21 @@ usersRouter.post('/', async (request, response, next) => {
   }
 });
 
-usersRouter.get('/', async (request, response) => {
-  const users = await User.find({}).populate('restaurants', {
-    title: 1,
-    owner: 1,
+OwnersRouter.get('/', async (request, response) => {
+  const owners = await Owner.find({}).populate('User', {
+    name: 1,
   });
 
-  response.json(users);
+  response.json(owners);
 });
 
-usersRouter.get('/:id', async (request, response) => {
+OwnersRouter.get('/:id', async (request, response) => {
   const { id } = request.params;
-  const user = await User.find({ ObjectId: id }).populate('restaurants', {
-    title: 1,
-    owner: 1,
+  const owner = await Owner.find({ ObjectId: id }).populate('User', {
+    name: 1,
   });
 
-  response.json(user);
+  response.json(owner);
 });
 
-module.exports = usersRouter;
+module.exports = OwnersRouter;
