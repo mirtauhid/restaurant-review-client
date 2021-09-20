@@ -15,7 +15,7 @@ const logger = require('./utils/logger');
 
 const { DB_URI } = config;
 
-logger.info('Connecting to Database');
+logger.info('Connecting to Database...');
 
 mongoose
   .connect(DB_URI, {
