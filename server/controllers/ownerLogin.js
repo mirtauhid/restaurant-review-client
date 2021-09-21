@@ -9,20 +9,20 @@ ownerLoginRouter.post('/', async (request, response) => {
   const passwordCorrect =
     owner === null
       ? false
-      : await bcrypt.compare(body.password, user.passwordHash);
+      : await bcrypt.compare(body.password, owner.passwordHash);
 
   if (!(owner && passwordCorrect)) {
     return response.status(401).json({ error: 'wrong username or password' });
   }
 
   const ownerForToken = {
-    name: owner.owner,
+    name: owner.name,
     id: owner._id,
   };
 
   const token = jwt.sign(ownerForToken, process.env.SECRET);
 
-  response.status(200).send({ token, name: owner.owner });
+  response.status(200).send({ token, name: owner.name });
 });
 
 module.exports = ownerLoginRouter;

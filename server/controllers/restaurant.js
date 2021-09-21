@@ -93,7 +93,7 @@ restaurantsRouter.post('/', async (request, response, next) => {
       name: body.name,
       address1: body.address1,
       address2: body.address2,
-      owner: body.owner,
+      owner: owner._id,
       reviews: [],
     });
 
@@ -107,4 +107,4 @@ restaurantsRouter.post('/', async (request, response, next) => {
   }
 });
 
-module.exports = blogsRouter;
+module.exports = restaurantsRouter;

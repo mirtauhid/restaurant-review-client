@@ -14,7 +14,7 @@ const requestLogger = (request, response, next) => {
 const tokenExtractor = (request, response, next) => {
   const getTokenFrom = () => {
     const authorization = request.get('authorization');
-    if (authorization && authorization.toLowercase().startsWith('bearer')) {
+    if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
       return authorization.substring(7);
     }
     return null;
