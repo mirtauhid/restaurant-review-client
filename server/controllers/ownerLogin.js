@@ -5,24 +5,24 @@ const Owner = require('../models/owner');
 
 ownerLoginRouter.post('/', async (request, response) => {
   const { body } = request;
-  const owner = await Owner.findOne({ email: body.email });
+  const owner = await Owner.findOne({ username: body.username });
   const passwordCorrect =
     owner === null
       ? false
       : await bcrypt.compare(body.password, user.passwordHash);
 
   if (!(owner && passwordCorrect)) {
-    return response.status(401).json({ error: 'wrong email or password' });
+    return response.status(401).json({ error: 'wrong username or password' });
   }
 
   const ownerForToken = {
-    name: owner.name,
+    name: owner.owner,
     id: owner._id,
   };
 
-  const token = jwt.sign(userForToken, process.env.SECRET);
+  const token = jwt.sign(ownerForToken, process.env.SECRET);
 
-  response.status(200).send({ token, name: user.name });
+  response.status(200).send({ token, name: owner.owner });
 });
 
 module.exports = ownerLoginRouter;

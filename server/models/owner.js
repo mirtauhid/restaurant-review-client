@@ -3,21 +3,14 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const ownerSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  owner: { type: String, required: true },
   email: { type: String, required: true, unique: true },
+  username: { type: String, required: true, unique: true },
   passwordHash: { type: String, required: true },
   restaurants: [
     {
-      restaurant: { type: String, required: true },
-      reviews: [
-        {
-          id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-          reviewer: { type: String },
-          rating: { type: Number },
-          comment: { type: String },
-          reply: { type: String },
-        },
-      ],
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Restaurant',
     },
   ],
 });

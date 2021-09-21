@@ -10,6 +10,7 @@ const ownerLoginRouter = require('./controllers/ownerLogin');
 
 const ownersRouter = require('./controllers/owner');
 const usersRouter = require('./controllers/user');
+const restaurantsRouter = require('./controllers/restaurant');
 const middleware = require('./utils/middleware');
 const logger = require('./utils/logger');
 
@@ -38,6 +39,7 @@ app.use('/api/user_login', userLoginRouter);
 app.use('/api/owner_login', ownerLoginRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/owners', ownersRouter);
+app.use('/api/restaurants', restaurantsRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);

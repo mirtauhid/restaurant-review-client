@@ -8,8 +8,9 @@ OwnersRouter.post('/', async (request, response, next) => {
   if (body.password.length >= 8) {
     const passwordHash = await bcrypt.hash(body.password, saltRounds);
     const owner = new Owner({
-      name: body.name,
+      owner: body.owner,
       email: body.email,
+      username: body.username,
       passwordHash,
       restaurants: [],
     });
@@ -29,7 +30,7 @@ OwnersRouter.post('/', async (request, response, next) => {
 });
 
 OwnersRouter.get('/', async (request, response) => {
-  const owners = await Owner.find({}).populate('User', {
+  const owners = await Owner.find({}).populate('Restaurants', {
     name: 1,
   });
 
@@ -38,7 +39,7 @@ OwnersRouter.get('/', async (request, response) => {
 
 OwnersRouter.get('/:id', async (request, response) => {
   const { id } = request.params;
-  const owner = await Owner.find({ ObjectId: id }).populate('User', {
+  const owner = await Owner.find({ ObjectId: id }).populate('Restaurant', {
     name: 1,
   });
 
