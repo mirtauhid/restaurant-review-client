@@ -16,13 +16,13 @@ ownerLoginRouter.post('/', async (request, response) => {
   }
 
   const ownerForToken = {
-    name: owner.name,
+    owner: owner.owner,
     id: owner._id,
   };
 
   const token = jwt.sign(ownerForToken, process.env.SECRET);
 
-  response.status(200).send({ token, name: owner.name });
+  response.status(200).send({ token, owner: owner.owner });
 });
 
 module.exports = ownerLoginRouter;

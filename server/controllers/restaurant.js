@@ -8,12 +8,10 @@ const Owner = require('../models/owner');
 const User = require('../models/user');
 
 restaurantsRouter.get('/', async (request, response) => {
-  const restaurant = await Restaurant.find({}).populate(
-    'Owner',
-    { owner: 1 },
-    'User',
-    { user: 1 }
-  );
+  const restaurant = await Restaurant.find({}).populate({
+    path: 'owner.owner',
+    select: 'owner',
+  });
 
   response.json(restaurant);
 });
@@ -90,7 +88,7 @@ restaurantsRouter.post('/', async (request, response, next) => {
 
   try {
     const restaurant = new Restaurant({
-      name: body.name,
+      restaurant: body.restaurant,
       address1: body.address1,
       address2: body.address2,
       owner: owner._id,

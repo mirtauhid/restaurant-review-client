@@ -1,0 +1,90 @@
+.ownerContainer {
+    width: 100vw;
+    height: auto;
+    padding: 0px;
+    background-color: #eee;
+}
+
+.ownerHeader {
+    width: 100%;
+    height: 70px;
+    background-color: #ccc;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid grey;
+}
+
+.ownerHeader h1 {
+    margin: 20px;
+}
+
+.ownerHeader button {
+    width: 140px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #eee;
+    margin: 20px;
+}
+
+.ownerBody {
+    display: flex;
+    flex-direction: row;
+}
+
+.ownerSide {
+    width: 20%;
+    background-color: #ccc;
+    height: 100vh;
+    border-right: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    text-align: left;
+}
+
+.ownerMain {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ownerMain table {
+    width: 1080px;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid grey;
+    border-radius: 4px;
+    min-height: 500px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.ownerMain table th {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid grey;
+    padding: 10px 66px;
+}
+
+.ownerMain table tr {
+    border: 1px solid grey;
+    padding: 5px 66px;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0px;
+}
+
+.ownerBody table tbody {
+    height: 100%;
+}
+
+.ownerBody table tbody tr td {
+    text-align: left;
+}

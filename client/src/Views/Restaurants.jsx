@@ -1,18 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import NavBar from '../Components/NavBar';
+import RestCard from '../Components/RestCard';
 
 const Restaurants = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: '#eee', padding: '30px' }}>
+      <NavBar />
       <ul>
         <li>
-          <Link to='/restaurant/1'>Restaurant 1</Link>
+          <RestCard></RestCard>
+        </li>
+        <br />
+        <li>
+          <RestCard></RestCard>
+        </li>
+        <br />
+        <li>
+          <RestCard></RestCard>
+        </li>
+        <br />
+        <li>
+          <RestCard></RestCard>
         </li>
         <li>
-          <Link to='/restaurant/2'>Restaurant 2</Link>
-        </li>
-        <li>
-          <Link to='/restaurant/3'>Restaurant 3</Link>
+          <RestCard></RestCard>
         </li>
       </ul>
     </div>

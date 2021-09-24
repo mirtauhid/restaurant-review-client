@@ -1,12 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import HomeBtn from '../Components/HomeBtn';
+import NavBar from '../Components/NavBar';
+import styles from '../Styles/Home.module.css';
 
 const Home = () => {
   return (
-    <div>
-      <Link to='/signup'>SignUp</Link>
+    <div className={styles.wrapper}>
+      <NavBar />
+      <h1>
+        Help people <br /> to find good food
+      </h1>
+      <p>Find restaurant & share your experience</p>
       <br />
-      <Link to='/signin'>SignIn</Link>
+      <HomeBtn />
     </div>
   );
 };
