@@ -209,6 +209,8 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
+
+
 .doctor-card.certified::after {
     content: '';
     background: url('//via.placeholder.com/100') no-repeat;
@@ -229,4 +231,18 @@
 
 .doctor-card+.doctor-card {
     margin-top: 1rem;
+}
+
+.form-control {
+    width: 100% !important;
+    position: relative;
+    z-index: 9999;
+    padding: 0;
+    min-height: 40px;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.menu .links {
+    display: none;
 }
