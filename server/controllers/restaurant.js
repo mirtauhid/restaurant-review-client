@@ -8,22 +8,14 @@ const Owner = require('../models/owner');
 const User = require('../models/user');
 
 restaurantsRouter.get('/', async (request, response) => {
-  const restaurant = await Restaurant.find({}).populate({
-    path: 'owner.owner',
-    select: 'owner',
-  });
+  const restaurant = await Restaurant.find({}).populate('owner');
 
   response.json(restaurant);
 });
 
 restaurantsRouter.get('/:id', async (request, response, next) => {
   try {
-    const restaurant = await Blog.findById(request.params.id).populate(
-      'Owner',
-      { owner: 1 },
-      'User',
-      { user: 1 }
-    );
+    const restaurant = await Blog.findById(request.params.id).populate('owner');
     if (restaurant) {
       response.json(restaurant);
     } else {
@@ -88,16 +80,14 @@ restaurantsRouter.post('/', async (request, response, next) => {
 
   try {
     const restaurant = new Restaurant({
-      restaurant: body.restaurant,
-      address1: body.address1,
-      address2: body.address2,
+      name: body.name,
       owner: owner._id,
       reviews: [],
     });
 
     const result = await restaurant.save();
     owner.restaurants = owner.restaurants.concat(result._id);
-    await restaurant.save();
+    await owner.save();
 
     response.status(201).json(result);
   } catch (exception) {

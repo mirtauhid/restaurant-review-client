@@ -1,16 +1,34 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router';
 import NavBar from '../Components/NavBar';
+import { api } from '../Services/api';
 import styles from '../Styles/signup.module.css';
 
 const SignUp = () => {
   const [regi, setRegi] = useState('owner');
+  const history = useHistory();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    if (regi === 'owner') {
+      axios.post(`${api}/owners`, data).then((res) => {
+        if (res.data) {
+          history.push('/signin');
+        }
+      });
+    } else {
+      axios.post(`${api}/users`, data).then((res) => {
+        if (res.data) {
+          history.push('/signin');
+        }
+      });
+    }
+  };
   console.log(errors);
   return (
     <div className={styles.wrapper}>
@@ -50,31 +68,26 @@ const SignUp = () => {
           <input
             type='text'
             placeholder='Name'
-            {...register('Name', { required: true, maxLength: 80 })}
+            {...register('name', { required: true, maxLength: 80 })}
           />
           <input
             type='text'
             placeholder='Username'
-            {...register('Username', { required: true, maxLength: 100 })}
+            {...register('username', { required: true, maxLength: 100 })}
           />
           <input
             type='text'
             placeholder='Email'
-            {...register('Email', { required: true, pattern: /^\S+@\S+$/i })}
+            {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
           />
           <input
-            type='text'
+            type='password'
             placeholder='Password'
-            {...register('Password', {
+            {...register('password', {
               required: true,
               min: 8,
               pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/i,
             })}
-          />
-          <input
-            type='text'
-            placeholder='Confirm Password'
-            {...register('Confirm', { required: true })}
           />
 
           <input type='submit' />

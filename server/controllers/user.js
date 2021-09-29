@@ -8,7 +8,7 @@ usersRouter.post('/', async (request, response, next) => {
   if (body.password.length >= 8) {
     const passwordHash = await bcrypt.hash(body.password, saltRounds);
     const user = new User({
-      user: body.user,
+      name: body.name,
       email: body.email,
       username: body.username,
       passwordHash,
@@ -30,18 +30,14 @@ usersRouter.post('/', async (request, response, next) => {
 });
 
 usersRouter.get('/', async (request, response) => {
-  const users = await User.find({}).populate('Restaurants', {
-    restaurant: 1,
-  });
+  const users = await User.find({}).populate('restaurants');
 
   response.json(users);
 });
 
 usersRouter.get('/:id', async (request, response) => {
   const { id } = request.params;
-  const user = await User.find({ ObjectId: id }).populate('Restaurants', {
-    restaurant: 1,
-  });
+  const user = await User.findById(id).populate('restaurants');
 
   response.json(user);
 });

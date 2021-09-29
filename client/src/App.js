@@ -1,8 +1,8 @@
 import React from 'react';
-import MainRouter from './Utils/MainRouter';
+import MainContexts from './Utils/MainContexts';
 
 const App = () => {
-  return <MainRouter />;
+  return <MainContexts />;
 };
 
 export default App;

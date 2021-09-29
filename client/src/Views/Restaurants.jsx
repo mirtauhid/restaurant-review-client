@@ -1,30 +1,26 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import NavBar from '../Components/NavBar';
 import RestCard from '../Components/RestCard';
+import { api } from '../Services/api';
 
 const Restaurants = () => {
+  const [rest, setRest] = useState([]);
+  axios.get(`/${api}/restaurants`).then((res) => {
+    setRest(res.data);
+  });
+
   return (
     <div style={{ backgroundColor: '#eee', padding: '30px' }}>
       <NavBar />
       <ul>
-        <li>
-          <RestCard></RestCard>
-        </li>
-        <br />
-        <li>
-          <RestCard></RestCard>
-        </li>
-        <br />
-        <li>
-          <RestCard></RestCard>
-        </li>
-        <br />
-        <li>
-          <RestCard></RestCard>
-        </li>
-        <li>
-          <RestCard></RestCard>
-        </li>
+        {rest.map((restData) => {
+          return (
+            <li>
+              <RestCard data={restData}></RestCard>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

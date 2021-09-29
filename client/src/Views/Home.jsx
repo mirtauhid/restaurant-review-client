@@ -12,7 +12,13 @@ const Home = () => {
       </h1>
       <p>Find restaurant & share your experience</p>
       <br />
-      <HomeBtn />
+      <div
+        style={{
+          display: 'flex',
+        }}>
+        <HomeBtn address='/owner' text={'Add Restaurant'} />
+        <HomeBtn address='/restaurants' text={'Review Now'} />
+      </div>
     </div>
   );
 };

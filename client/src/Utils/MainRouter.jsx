@@ -8,7 +8,7 @@ import Restaurant from '../Views/Restaurant';
 import Restaurants from '../Views/Restaurants';
 import SignIn from '../Views/SignIn';
 import SignUp from '../Views/SignUp';
-import User from '../Views/User';
+import PrivateRoute from './PrivateRoute';
 
 const MainRouter = () => {
   return (
@@ -26,21 +26,18 @@ const MainRouter = () => {
         <Route path='/forgot'>
           <Forgot />
         </Route>
-        <Route path='/user'>
-          <User />
-        </Route>
-        <Route path='/owner'>
+        <PrivateRoute path='/owner'>
           <Owner />
-        </Route>
-        <Route path='/admin'>
+        </PrivateRoute>
+        <PrivateRoute path='/admin'>
           <Administrator />
-        </Route>
-        <Route path='/restaurants'>
+        </PrivateRoute>
+        <PrivateRoute path='/restaurants'>
           <Restaurants />
-        </Route>
-        <Route path='/restaurant/:id'>
+        </PrivateRoute>
+        <PrivateRoute path='/restaurant/:id'>
           <Restaurant />
-        </Route>
+        </PrivateRoute>
       </Switch>
     </Router>
   );
