@@ -47,6 +47,7 @@ const SignIn = () => {
     } else {
       axios.post(`${api}/user_login`, data).then((res) => {
         window.sessionStorage.setItem('token', res.data.token);
+        window.sessionStorage.setItem('name', res.data.name);
         setData(res.data);
         pageRedirect();
       });
@@ -105,7 +106,7 @@ const SignIn = () => {
           <input type='submit' />
           <strong style={{ margin: '0 auto' }}>
             Don't have account yet ?{' '}
-            <Link style={{ color: 'red' }} to='/signup'>
+            <Link style={{ color: 'green' }} to='/signup'>
               Sign Up
             </Link>{' '}
             here

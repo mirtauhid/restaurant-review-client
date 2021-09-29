@@ -15,7 +15,9 @@ restaurantsRouter.get('/', async (request, response) => {
 
 restaurantsRouter.get('/:id', async (request, response, next) => {
   try {
-    const restaurant = await Blog.findById(request.params.id).populate('owner');
+    const restaurant = await Restaurant.findById(request.params.id).populate(
+      'owner'
+    );
     if (restaurant) {
       response.json(restaurant);
     } else {

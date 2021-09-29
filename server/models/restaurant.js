@@ -6,6 +6,9 @@ const restaurantSchema = new mongoose.Schema({
   reviews: [
     {
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      rating: { type: Number },
+      comments: { type: String },
+      reply: { type: String },
     },
   ],
 });

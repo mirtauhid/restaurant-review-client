@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true, minLength: 8 },
   passwordHash: { type: String, required: true },
-  restaurants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' }],
 });
 
 userSchema.plugin(uniqueValidator);

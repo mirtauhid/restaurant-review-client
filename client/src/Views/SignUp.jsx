@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import NavBar from '../Components/NavBar';
 import { api } from '../Services/api';
 import styles from '../Styles/signup.module.css';
@@ -92,9 +93,13 @@ const SignUp = () => {
 
           <input type='submit' />
           <div style={{ margin: '0 auto' }}>
-            <small style={{ color: 'grey' }}>
-              By signing up, you agree to our Terms of service
-            </small>
+            <strong style={{ margin: '0 auto' }}>
+              Already have account ?{' '}
+              <Link style={{ color: 'green' }} to='/signin'>
+                Sign In
+              </Link>{' '}
+              here
+            </strong>
           </div>
         </form>
       </div>

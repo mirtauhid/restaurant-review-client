@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import avatar from '../Assets/avatar.png';
 import '../Styles/RestCard.css';
 
-const RestCard = () => {
+const RestCard = ({ data }) => {
   return (
     <div className='doctor-card'>
       <div className='info'>
@@ -11,10 +11,9 @@ const RestCard = () => {
           <img src={avatar} alt='doc name' />
         </div>
         <div className='details'>
-          <div className='name'>Restaurant Name</div>
+          <div className='name'>{data.name}</div>
           <div className='meta-info'>
-            <span className='sp'>Owner Name</span>
-            <span className='prac-area'> Restaurant Address</span>
+            <span className='sp'>{data.owner.name}</span>
           </div>
         </div>
       </div>
@@ -31,16 +30,11 @@ const RestCard = () => {
         </div>
         <div className='comments'>
           <span className='comment-count'>
-            <strong>340</strong> Reviews
-          </span>
-        </div>
-        <div className='consultation'>
-          <span className='fee'>
-            <strong>34K</strong>Comments
+            <strong>{data.reviews.length}</strong> Reviews
           </span>
         </div>
         <div className='appo'>
-          <Link to='/restaurant/1' className='btn'>
+          <Link to={`/restaurant/${data.id}`} className='btn'>
             Review Now
           </Link>
         </div>
