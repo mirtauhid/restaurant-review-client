@@ -119,7 +119,7 @@ const NavBar = (props) => {
                       style={{ color: 'black', marginLeft: '5px' }}
                       variant='h6'>
                       {' '}
-                      {data.name || 'User'}{' '}
+                      {data.name}{' '}
                     </Typography>
                   </MenuItem>
                 </Menu>
@@ -190,7 +190,7 @@ const NavBar = (props) => {
                   }}>
                   <Typography style={{ color: 'white' }} variant='h6'>
                     {' '}
-                    {data.name || 'User'}{' '}
+                    {data.name}{' '}
                   </Typography>
                   <IconButton
                     size='medium'
